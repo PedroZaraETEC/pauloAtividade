@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="nome" id="nome">
+        <input type="text" name="idade" id="idade">
+        <input type="text" name="cpf" id="cpf">
+        <input type="text" name="endereco" id="endereco">
+        <input type="submit" value="Enviar" onclick="enviarDados()">
+
+        <script>
+            function enviarDados() {
+                console.log("Entrou")
+                let nome = document.getElementById("nome").value;
+                let idade = document.getElementById("idade").value;
+                let cpf = document.getElementById("cpf").value;
+                let endereco = document.getElementById("endereco").value;
+
+                let acao = new XMLHttpRequest();
+                acao.open("POST", `dataTravel.php?nome=${nome}&idade=${idade}&cpf=${cpf}&endereco=${endereco}&action=inserirUser`);
+                acao.send();
+
+                // window.location = "login.html"
+            }
+        </script>
+    </div>
+</body>
+</html>
