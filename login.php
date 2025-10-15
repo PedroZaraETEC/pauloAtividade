@@ -20,8 +20,9 @@
             requisicao.open("GET", `dataTravel.php?cpf=${cpf}&senha=${senha}&action=consultarUser`);
             requisicao.onload = function () {
                 let resposta = JSON.parse(requisicao.responseText);
-                    if (resposta.status === "ok") {
-                        window.location.href = "home1.html"; 
+                    
+                if (resposta.status === "ok") {
+                        window.location.href = "home1.php"; 
                     } else {
                         alert("CPF ou senha incorretos!");
                     }

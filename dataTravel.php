@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once "conn.php";
 include_once "pessoa.php";
 include_once "action.php";
@@ -10,16 +12,34 @@ switch($acao) {
         $pessoa = criarPessoa();
         $action = new Action();
         $action -> inserirUser($pessoa);
-        break;
+    break;
         
-        case "consultarUser":
-            $cpf = $_GET["cpf"];
-            $senha = $_GET["senha"];
-            $action = new Action();
-            $ver = $action -> consultarUser($cpf,$senha);
-            echo $ver;
-            return $ver;
-        break;
+    case "consultarUser":
+        $cpf = $_GET["cpf"];
+        $senha = $_GET["senha"];
+        $action = new Action();
+        $ver = $action -> consultarUser($cpf,$senha);
+        echo $ver;
+        return $ver;
+    break;
+
+    case "criarAgenda":
+        $agenda = criarAgenda();
+        $action = new Action();
+        $action -> inserirAgenda($agenda);
+    break;
+}
+
+function criarAgenda() {
+    $titulo = $_GET["titulo"];
+    $date = $_GET["date"];
+    $descricao = $_GET["descricao"];
+    $agenda = new Agenda();
+    $agenda->setTitulo($titulo);
+    $agenda->setDate($date);
+    $agenda->setDescricao($descricao);
+    $agenda->setIdUser($_SESSION["id"]);
+    return $agenda;
 }
 
 function criarPessoa() {

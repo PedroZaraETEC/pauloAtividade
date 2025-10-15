@@ -33,9 +33,14 @@ class Action {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             if ($result) {
-            echo json_encode(["status" => "ok"]);
+                session_start();
+                $_SESSION["nome"] = $result[0]["nome"];
+                $_SESSION["id"] = $result[0]["id"];
+                $_SESSION["cpf"] = $cpf;
+                echo json_encode(["status" => "ok"]);
+
             } else {
-            echo json_encode(["status" => "erro"]);
+                echo json_encode(["status" => "erro"]);
             }
         }
 
@@ -44,15 +49,17 @@ class Action {
         }
     }
 
-    public function inserirAgenda() {
+    public function inserirAgenda($agenda) {
         try {
-            global $conn;
-            $sql = "INSERT INTO agenda (id_user,descricao,titulo) VALUES (?,?,?);";
+            global $conn;; 
+            $sql = "INSERT INTO agenda (id_user,descricao,titulo,data_cri) VALUES (?,?,?,?);";
             $stmt = $conn->prepare($sql);
-            $stmt = bindValue(1, Agenda->getIdUser());
-            $stmt = bindValue(2, Agenda->getDescricao());
-            $stmt = bindValue(3, Agenda->getTitulo());
-            $stmt->execute();
+            $stmt -> bindValue(1, $agenda -> getIdUser());
+            $stmt -> bindValue(2, $agenda -> getDescricao());
+            $stmt -> bindValue(3, $agenda -> getTitulo());
+            $stmt -> bindValue(4, $agenda -> getDate());
+            $stmt -> execute();
+            echo json_encode(["status" => "ok"]);
         }
         
         catch (PDOException $err) {
