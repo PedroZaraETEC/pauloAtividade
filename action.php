@@ -10,12 +10,13 @@ class Action {
     public function inserirUser($pessoa) {
         try {
             global $conn;
-            $sql = "INSERT INTO user (nome,cpf,idade,endereco) VALUES (?,?,?,?);";
+            $sql = "INSERT INTO user (nome,cpf,idade,endereco,senha) VALUES (?,?,?,?,?);";
             $stmt = $conn->prepare($sql);
             $stmt -> bindValue(1, $pessoa->getNome());
             $stmt -> bindValue(2, $pessoa->getCpf());
             $stmt -> bindValue(3, $pessoa->getIdade());
             $stmt -> bindValue(4, $pessoa->getEndereco());
+            $stmt -> bindValue(5, $pessoa->getSenha());
             $stmt->execute();
         }
         
@@ -24,12 +25,18 @@ class Action {
         }
     }
 
-    public function consultarUser($cpf) {
+    public function consultarUser($cpf,$senha) {
         try {
             global $conn;
-            $sql = "SELECT * FROM user WHERE cpf = $cpf;";
-            $stmt = conn->query($sql);
-            return $stmt->fecthAll(PDO::FETCH_ASSOC);  
+            $sql = "SELECT * FROM user WHERE cpf = $cpf and senha = $senha;";
+            $stmt = $conn->query($sql);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if ($result) {
+            echo json_encode(["status" => "ok"]);
+            } else {
+            echo json_encode(["status" => "erro"]);
+            }
         }
 
         catch (PDOException $ex) {
@@ -41,7 +48,7 @@ class Action {
         try {
             global $conn;
             $sql = "INSERT INTO agenda (id_user,descricao,titulo) VALUES (?,?,?);";
-            $stmt = conn->prepare($sql);
+            $stmt = $conn->prepare($sql);
             $stmt = bindValue(1, Agenda->getIdUser());
             $stmt = bindValue(2, Agenda->getDescricao());
             $stmt = bindValue(3, Agenda->getTitulo());
@@ -57,7 +64,7 @@ class Action {
         try {
             global $conn;
             $sql = "SELECT * FROM agenda;";
-            $stmt = conn->query($sql);
+            $stmt = $conn->query($sql);
             return $stmt->fecthAll(PDO::FETCH_ASSOC);  
         }
 

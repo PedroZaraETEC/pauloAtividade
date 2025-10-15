@@ -7,12 +7,13 @@
 </head>
 <body>
     <div>
-        <input type="text" name="nome" id="nome">
-        <input type="text" name="idade" id="idade">
-        <input type="text" name="cpf" id="cpf">
-        <input type="text" name="endereco" id="endereco">
+        <label for="">Nome: </label>    <input type="text" name="nome" id="nome"><br>
+        <label for="">Idade: </label>   <input type="text" name="idade" id="idade"><br>
+        <label for="">Cpf: </label>     <input type="text" name="cpf" id="cpf"><br>
+        <label for="">Endereco: </label><input type="text" name="endereco" id="endereco"><br>
+        <label for="">Senha</label>     <input type="password" name="senha" id="senha"><br>
         <input type="submit" value="Enviar" onclick="enviarDados()">
-
+    </div>
         <script>
             function enviarDados() {
                 console.log("Entrou")
@@ -20,14 +21,12 @@
                 let idade = document.getElementById("idade").value;
                 let cpf = document.getElementById("cpf").value;
                 let endereco = document.getElementById("endereco").value;
+                let senha = document.getElementById("senha").value;
 
                 let acao = new XMLHttpRequest();
-                acao.open("POST", `dataTravel.php?nome=${nome}&idade=${idade}&cpf=${cpf}&endereco=${endereco}&action=inserirUser`);
+                acao.open("POST", `dataTravel.php?nome=${nome}&idade=${idade}&cpf=${cpf}&endereco=${endereco}&senha=${senha}&action=inserirUser`);
                 acao.send();
-
-                // window.location = "login.html"
             }
         </script>
-    </div>
 </body>
 </html>
