@@ -7,23 +7,24 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Criar agenda</title>
+    <link rel="stylesheet" type="text/css" href="styleAgenda.css">
 </head>
 <body>
     <h1>Criar nova Agenda</h1>
-    <div>
-        <div>
+    <div class="agendaDiv">
+        <div class="titulo">
             <h2>Titulo</h2>
-            <input type="text" name="titulo" id="titulo" required>
+            <input class="tituloInput" type="text" name="titulo" id="titulo" required>
             <input type="date" name="date" id="date">
         </div>
 
-        <div>
+        <div class="descricao">
             <h2>Descrição</h2>
-            <input type="text" name="descricao" id="descricao">
+            <textarea id="descricao" name="descricao" placeholder="Digite sua descrição aqui..." rows="8" cols="50"></textarea>
         </div>
 
-        <input type="submit" value="Criar" onclick="criarNovaAgenda()">
+        <input class="submit" type="submit" value="Criar" onclick="criarNovaAgenda()">
     </div>
 
 

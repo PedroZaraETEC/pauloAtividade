@@ -28,6 +28,12 @@ switch($acao) {
         $action = new Action();
         $action -> inserirAgenda($agenda);
     break;
+
+    case "consultarAgenda": 
+        $action = new Action();
+        $action -> consultarAgenda($_SESSION["id"]);
+        
+    break;
 }
 
 function criarAgenda() {

@@ -24,6 +24,15 @@
 
                 let acao = new XMLHttpRequest();
                 acao.open("POST", `dataTravel.php?nome=${nome}&idade=${idade}&cpf=${cpf}&endereco=${endereco}&senha=${senha}&action=inserirUser`);
+                acao.onload = function() {
+                    let resposta = JSON.parse(requisicao.responseText);
+                    
+                    if (resposta.status === "ok") {
+                        window.location.href = "login.php"; 
+                    } else {
+                        alert("CPF ou senha incorretos!");
+                    }
+                }
                 acao.send();
             }
         </script>

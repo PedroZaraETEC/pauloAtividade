@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
 </head>
-<body>
+<body class="bodylogin">
     <div>
         <label for="">Cpf: </label><input type="text" name="cpf" id="cpf"><br>
         <label for="">Senha: </label><input type="password" name="senha" id="senha"><br>
@@ -28,9 +28,6 @@
                     }
             };
             requisicao.send();
-
-            
-            console.log(res);
         }
     </script>
 </body>

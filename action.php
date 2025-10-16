@@ -18,6 +18,7 @@ class Action {
             $stmt -> bindValue(4, $pessoa->getEndereco());
             $stmt -> bindValue(5, $pessoa->getSenha());
             $stmt->execute();
+            echo json_encode(["status" => "ok"]);
         }
         
         catch (PDOException $err) {
@@ -33,7 +34,7 @@ class Action {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             if ($result) {
-                session_start();
+            
                 $_SESSION["nome"] = $result[0]["nome"];
                 $_SESSION["id"] = $result[0]["id"];
                 $_SESSION["cpf"] = $cpf;
@@ -67,12 +68,13 @@ class Action {
         }
     }
 
-    public function consultarAgenda() {
+    public function consultarAgenda($id) {
         try {
             global $conn;
-            $sql = "SELECT * FROM agenda;";
+            $sql = "SELECT * FROM agenda WHERE id_user = $id;";
             $stmt = $conn->query($sql);
-            return $stmt->fecthAll(PDO::FETCH_ASSOC);  
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($result);
         }
 
         catch (PDOException $ex) {
