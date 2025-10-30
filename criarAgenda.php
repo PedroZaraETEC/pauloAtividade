@@ -8,7 +8,6 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar agenda</title>
-    <link rel="stylesheet" type="text/css" href="styleAgenda.css">
 </head>
 <body>
     <h1>Criar nova Agenda</h1>
@@ -48,10 +47,52 @@ session_start();
                         alert("CPF ou senha incorretos!");
                     }
             };
-            requisicao.send();
-
         requisicao.send();
 }
     </script>
+
+    <style>
+         body {
+            background-color: #cfcfcf;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .agendaDiv {
+            background-color: #fff;
+            width: 400px;
+            margin: 60px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px #999;
+        }
+
+        h1 {
+            margin-top: 40px;
+        }
+
+        input, textarea {
+            width: 90%;
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .submit {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: 0.2s;
+        }
+
+        .submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </body>
 </html>
