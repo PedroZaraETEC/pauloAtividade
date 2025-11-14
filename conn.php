@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $db = "siteprojeto";
-$senha = "";
+$senha = "root";
 $port = "3306";
 
 try {

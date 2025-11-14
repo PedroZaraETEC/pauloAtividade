@@ -28,7 +28,7 @@
                 let resposta = JSON.parse(requisicao.responseText);
                     
                 if (resposta.status === "ok") {
-                        window.location.href = "home1.php"; 
+                        window.location.href = "login.php"; 
                     } else {
                         alert("CPF ou senha incorretos!");
                     }
